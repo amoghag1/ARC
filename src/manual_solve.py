@@ -18,8 +18,35 @@ def solve_25d8a9c8(x):
             ans[i].fill(5)
     return ans
 
-def solve_b2862040(x):
+def solve_e179c5f4(x):
     a = copy.deepcopy(x)
+    j=0
+    flag = 0
+    nrow = a.shape[0]
+    nclm = a.shape[1]
+    for i in range(a.shape[0]):
+        for k in range(a.shape[1]):
+            a[i][k] = 8
+
+    for i in range(nrow):
+        if (flag==0):
+            a[nrow-1][j]=1
+            nrow-=1
+            j+=1
+            if(j==nclm):
+                j-=2
+                flag=1
+        elif (flag==1):
+            a[nrow-1][j]=1
+            nrow-=1
+            j-=1
+            if(j==-1):
+                j=1
+                flag=0
+
+    return a
+
+def solve_05269061(x):
     return x
 
 def solve_05269061(x):
