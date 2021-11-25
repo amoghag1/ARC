@@ -4,16 +4,22 @@ import os, sys
 import json
 import numpy as np
 import re
+import copy
 
 ### YOUR CODE HERE: write at least three functions which solve
 ### specific tasks by transforming the input x and returning the
 ### result. Name them according to the task ID as in the three
 ### examples below. Delete the three examples. The tasks you choose
 ### must be in the data/training directory, not data/evaluation.
-def solve_6a1e5592(x):
-    return x
+def solve_25d8a9c8(x):
+    ans = np.zeros(np.shape(x))
+    for i in range(len(x)):
+        if(np.all(x[i] == x[i][0])):
+            ans[i].fill(5)
+    return ans
 
 def solve_b2862040(x):
+    a = copy.deepcopy(x)
     return x
 
 def solve_05269061(x):
@@ -39,7 +45,7 @@ def main():
 
     for ID, solve_fn in tasks_solvers:
         # for each task, read the data and call test()
-        directory = os.path.join("..", "data", "training")
+        directory = os.path.join(".", "data", "training")
         json_filename = os.path.join(directory, ID + ".json")
         data = read_ARC_JSON(json_filename)
         test(ID, solve_fn, data)
