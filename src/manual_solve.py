@@ -46,8 +46,11 @@ def solve_e179c5f4(x):
 
     return a
 
-def solve_05269061(x):
-    return x
+def solve_ea786f4a(x):
+    b = copy.deepcopy(x)
+    np.fill_diagonal(b, 0, wrap=True)
+    np.fill_diagonal(np.fliplr(b), [0])
+    return b
 
 def solve_05269061(x):
     return x
