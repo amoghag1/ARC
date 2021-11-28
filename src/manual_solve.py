@@ -18,6 +18,21 @@ import itertools
 ### examples below. Delete the three examples. The tasks you choose
 ### must be in the data/training directory, not data/evaluation.
 
+"""
+Summary/Reflection:
+The Multi-dimensional array problems from ARC were solved using pure python. 
+The solutions have been written using a structural programming approach without any use of machine learning module. 
+It can be seen in the code the use of nested loops to traverse all elements of the array and perform the necessary operations on them.
+A new array is used to store and/or perform the operations and is returned by the function.
+The 'copy' module is used to create a deepcopy of the input array to avoid operating on the same array. 
+multiple utility functions from the 'Numpy' module are used - np.zeros to create an array of 0's and 
+np.full to fill the entire array with a particular value.
+np.fill_diagonal is used to fill normal diagonal along with to fill secondary diagonal with flipr arguement.
+arrays are traversed with a[i][j] which can be further improved if traversed with a[i, j].
+Regular slicing of lists and reshaping of numpy arrays is also used.
+
+"""
+
 
 """In task 25d8a9c8 we need to transform x in such a way that rows having all the squares with same colour should be changed to black.
 While rest of the rows or squares are to be changed to gray.
@@ -25,7 +40,7 @@ First we need to figure out which exact rows have all the squares with same colo
 Initially I have changed whole input to gray and then printed balck when I found row with all the squares having same color
 With my code, all the test and training grids are solved correctly."""
 def solve_25d8a9c8(x):
-    #convert x completely to gray color
+    #creating a deepcopy of x in order to avoid referencing the same variable
     ans = np.zeros(np.shape(x))
     #iterate over length of rows to check if all sqaures in a row are same 
     for i in range(len(x)):
@@ -42,7 +57,7 @@ upwards till we print dark blue sqaure on first column. We know that the each ro
 Initially we will start with painting all the the squares light blue and paint over dark blue from left bottom corner.
 With my code, all the test and training grids are solved correctly."""
 def solve_e179c5f4(x):
-    #creating a deepcopy of x in order maintain x throughout the code
+    #creating a deepcopy of x in order to avoid referencing the same variable
     a = copy.deepcopy(x)
     #initializing variables to use further
     j=0
@@ -81,7 +96,7 @@ We just need to paint both diagonals of the square in color given in center in t
 We will just use numpy functions to traverse diagonal, and flip function of same library to traverse through other diagonal.
 With my code, all the test and training grids are solved correctly."""
 def solve_ea786f4a(x):
-    #creating a deepcopy of x in order maintain x throughout the code
+    #creating a deepcopy of x in order to avoid referencing the same variable
     b = copy.deepcopy(x)
     #filing main diagonal with black color with np.fill_diagonal
     np.fill_diagonal(b, 0, wrap=True)
@@ -99,7 +114,7 @@ Once I got output with all squares colored I ompared initially saved locations t
 With my code, all the test and training grids are solved correctly.
 """
 def solve_05269061(x):
-    #creating a deepcopy of x in order maintain x throughout the code
+    #creating a deepcopy of x in order to avoid referencing the same variable
     e = copy.deepcopy(x)
     #Creating variables for further use
     (nrow, ncol) = np.shape(e)
@@ -152,6 +167,27 @@ def solve_05269061(x):
         if(count==len(colors)):
             return np.array(t)
 
+
+"""5bd6f4ac: In the task 5bd6f4ac, the nxn mattrix is given which is is composed of random coloured squares.
+We have to convert this input in 3*3 matrix which will contain the last three elements of each of first three rows on the sqaure.
+With my code, all the test and training grids are solved correctly.
+"""
+def solve_5bd6f4ac(x):
+    #creating a deepcopy of x in order to avoid referencing the same variable
+    q = copy.deepcopy(x)
+    #initializing list to save the same colors
+    saved_colors = []
+     #Moving through slices of first three rows and then last three columns
+    for i in q[:3]:            
+        for j in i[-3:]:
+            #saving the color values to list       
+            saved_colors.append(j) 
+    #converting the list to np array       
+    p = np.array(saved_colors) 
+    #reshaping p into a 3x3 matrix          
+    p = p.reshape(3,3)         
+
+    return p
 
 
 def main():
@@ -230,6 +266,16 @@ if __name__ == "__main__": main()
 
 
 """
-Conclusion:
+Summary/Reflection:
+The Multi-dimensional array problems from ARC were solved using pure python. 
+The solutions have been written using a structural programming approach without any use of machine learning module. 
+It can be seen in the code the use of nested loops to traverse all elements of the array and perform the necessary operations on them.
+A new array is used to store and/or perform the operations and is returned by the function.
+The 'copy' module is used to create a deepcopy of the input array to avoid operating on the same array. 
+multiple utility functions from the 'Numpy' module are used - np.zeros to create an array of 0's and 
+np.full to fill the entire array with a particular value.
+np.fill_diagonal is used to fill normal diagonal along with to fill secondary diagonal with flipr arguement.
+arrays are traversed with a[i][j] which can be further improved if traversed with a[i, j].
+Regular slicing of lists and reshaping of numpy arrays is also used.
 
 """
