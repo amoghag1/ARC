@@ -20,7 +20,7 @@ import itertools
 
 """
 Summary/Reflection:
-The Multi-dimensional array problems from ARC were solved using pure python. 
+The Multi-dimensional array problems from ARC were solved using python. 
 The solutions have been written using a structural programming approach without any use of machine learning module. 
 It can be seen in the code the use of nested loops to traverse all elements of the array and perform the necessary operations on them.
 A new array is used to store and/or perform the operations and is returned by the function.
