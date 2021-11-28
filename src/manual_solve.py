@@ -5,6 +5,7 @@ import json
 import numpy as np
 import re
 import copy
+import itertools
 
 ### YOUR CODE HERE: write at least three functions which solve
 ### specific tasks by transforming the input x and returning the
@@ -53,7 +54,50 @@ def solve_ea786f4a(x):
     return b
 
 def solve_05269061(x):
-    return x
+    e = copy.deepcopy(x)
+    (nrow, ncol) = np.shape(e)
+    colors = []
+    locations = []
+    for i in range(ncol-1):
+        if((len(colors))<=4):
+            if(e[0][i] != 0 and e[0][i] not in colors):
+                colors.append(e[0][i])
+                locations.append((0,i))
+            if(e[i][0] != 0 and e[i][0] not in colors):
+                colors.append(e[i][0])
+                locations.append((i,0))
+            if(e[i][ncol-1] != 0 and e[i][ncol-1] not in colors):
+                colors.append(e[i][ncol-1])
+                locations.append((i,ncol-1))
+            if(e[ncol-1][i] != 0 and e[ncol-1][i] not in colors):
+                colors.append(e[ncol-1][i])
+                locations.append((ncol-1,i))
+    
+    locations = list(map(list,locations))
+    v = list(itertools.permutations(colors))
+    v = list(map(list, v))
+    k =[]
+    for i in range(len(v)):
+        k.append(list(v[i]*16))
+        k[i].append(v[i][0])
+
+    for b in range(len(k)):
+        count=0
+        col = ncol
+        t=[[] for _ in range(col)]
+        m=0
+        for i in range(nrow):
+            for j in range(m,col):
+                t[i].append(k[b][j])
+            m+=nrow
+            col +=nrow
+    
+        for i in range(len(colors)):
+            if(t[locations[i][0]][locations[i][1]] == colors[i]):
+                count+=1
+        if(count==len(colors)):
+            return np.array(t)
+
 
 
 def main():
